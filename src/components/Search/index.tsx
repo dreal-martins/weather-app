@@ -67,7 +67,7 @@ const Search = () => {
     <div className="w-full relative">
       <div className="relative">
         <DebounceInput
-          className="bg-white flex border-none w-full p-4 rounded-full outline-none pl-[3rem] placeholder:text-lg text-lg"
+          className="bg-white flex border-none w-full p-4 rounded-full outline-none text-black pl-[3rem] placeholder:text-lg text-lg"
           debounceTimeout={300}
           onChange={onSearchInputChanged}
           onKeyPress={handleKeyPress}
