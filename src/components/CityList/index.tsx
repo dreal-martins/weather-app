@@ -76,7 +76,7 @@ const CityList: React.FC = () => {
   }, [isInitial]);
 
   return (
-    <div className="bg-blue-50 shadow-lg rounded-2xl p-6 mx-auto mt-8 transition-all duration-300 ease-in-out">
+    <div className="bg-blue-50 shadow-lg rounded-2xl p-6 w-full transition-all duration-300 ease-in-out lg:max-w-4xl mx-auto">
       <h2 className="font-semibold text-xl text-blue-700 mb-4">
         Largest Cities by Population
       </h2>
