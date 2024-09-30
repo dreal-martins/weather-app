@@ -13,6 +13,11 @@ interface IForecastItemProps {
 }
 
 const FavouriteItem: React.FC<IForecastItemProps> = (props) => {
+  const handleRemoveCity = (event: React.MouseEvent<SVGElement>) => {
+    event.stopPropagation();
+    props.removeCity(props.city);
+  };
+
   return (
     <div
       onClick={props.onClick}
@@ -26,7 +31,7 @@ const FavouriteItem: React.FC<IForecastItemProps> = (props) => {
         <sup>&deg;</sup>
       </span>
       <LiaTimesCircleSolid
-        onClick={() => props.removeCity(props.city)}
+        onClick={handleRemoveCity}
         className="absolute -top-3 -right-4 text-red-600 text-[2rem] font-bold cursor-pointer"
       />
     </div>
