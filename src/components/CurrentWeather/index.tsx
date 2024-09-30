@@ -121,16 +121,20 @@ const CurrentWeather: React.FC = () => {
   }
 
   return (
-    <div className="bg-blue-50 shadow-lg rounded-2xl p-8 w-full lg:max-w-4xl transition-all duration-300 ease-in-out">
+    <div className="bg-blue-50 shadow-lg rounded-2xl p-5 lg:p-8 w-full lg:max-w-4xl transition-all duration-300 ease-in-out">
       <div className="flex justify-between items-center mb-8">
         <h1 className="font-semibold text-xl text-blue-700">Current Weather</h1>
-        <div className="lg:w-[15%] flex justify-between items-center">
+        <div className="w-[40%] lg:w-[15%] flex justify-between items-center">
           <ToggleSwitch onClick={() => dispatch(changeTempUnit())} />
           <button onClick={toggleFavorite} aria-label="Favorite location">
             {isFavorite ? (
-              <span className="text-red-500 text-[1.5rem]">❤️</span>
+              <span className="text-red-500 text-[1.8rem] lg:text-[1.5rem]">
+                ❤️
+              </span>
             ) : (
-              <span className="text-gray-400 text-[1.5rem]">🤍</span>
+              <span className="text-gray-400 text-[1.8rem] lg:text-[1.5rem]">
+                🤍
+              </span>
             )}
           </button>
         </div>
