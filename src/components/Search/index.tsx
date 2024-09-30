@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { AppDispatch } from "store";
 import Suggestion from "./Suggestion";
 import { fetchWeather } from "store/fetchWeather";
+import { useClickOutside } from "hooks/useOutside";
 
 const Search = () => {
   const suggestionRef = useRef<HTMLDivElement | null>(null);
@@ -16,6 +17,8 @@ const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { data, error, fetchData } = useFetch<string[]>();
   const dispatch = useDispatch<AppDispatch>();
+
+  useClickOutside(suggestionRef, () => setShowSuggestions(false));
 
   useEffect(() => {
     if (searchTerm.length < 3) {

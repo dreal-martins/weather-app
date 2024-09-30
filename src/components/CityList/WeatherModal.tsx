@@ -84,7 +84,6 @@ const WeatherModal: React.FC<WeatherModalProps> = ({
       width={460}
       className="modal"
       footer={""}
-      style={{ top: "20%", left: "50%", transform: "translate(-50%, -20%)" }}
     >
       <div className="flex flex-col items-center text-center w-full gap-3">
         <h4 className="font-semibold text-3xl text-blue-500">{selectedCity}</h4>
