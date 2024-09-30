@@ -91,7 +91,9 @@ const Favorite: React.FC = () => {
         Favorite Cities
       </h2>
 
-      {favorites.length === 0 && <p>No favorite cities added.</p>}
+      {favorites.length === 0 && (
+        <p className="text-black">No favorite cities added.</p>
+      )}
 
       <ul className="grid gap-6 sm:grid-cols-4 lg:grid-cols-5 relative">
         {favorites.map((city) => (
