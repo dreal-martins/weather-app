@@ -22,7 +22,7 @@ const Suggestion: React.FC<ISuggestionProps> = (props) => {
 
   return (
     <p
-      className="p-2 block text-left border-[1px] text-lg cursor-pointer hover:bg-blue-500 hover:text-white  bg-white z-20"
+      className="p-2 block text-black text-left border-[1px] text-lg cursor-pointer hover:bg-blue-500 hover:text-white  bg-white z-20"
       onClick={onClick}
     >
       {props.label}
