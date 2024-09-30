@@ -16,7 +16,7 @@ const Home = () => {
         isDarkMode
           ? "bg-dark-gradient text-white"
           : "bg-light-gradient text-black"
-      } p-4 flex justify-center items-center lg:px-[20rem] flex-col gap-5`}
+      } p-4 flex justify-center items-center lg:px-[15rem] flex-col gap-5`}
     >
       <Header />
       <Search />
