@@ -7,13 +7,14 @@ import { ReactComponent as PressureIcon } from "../../assets/pressure-icon.svg";
 import { ReactComponent as WindIcon } from "../../assets/wind-icon.svg";
 import { AppStore } from "store";
 import { changeTempUnit } from "store/reducers/appReducer";
-import { kmToMile, TempUnit } from "utils/general";
+import { kmToMile } from "utils/general";
 import ToggleSwitch from "components/ui/ToggleSwitch";
 import WeatherIcon from "./WeatherIcon";
 import Temperature from "./Temperature";
 import { setWeatherData } from "store/reducers/weatherReducer";
 import { toast } from "sonner";
 import { toggleFavoriteCity } from "store/reducers/favoriteReducer";
+import { TempUnit } from "types";
 
 const CurrentWeather: React.FC = () => {
   const { weather, degreeType, isInitial, isError } = useSelector(
@@ -47,10 +48,19 @@ const CurrentWeather: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    try {
+      const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+      const isFav = favorites.some((fav: string) => fav === weather.name);
+      setIsFavorite(isFav);
+    } catch (error) {
+      toast.error("Failed to load favorite cities.");
+    }
+  }, [weather.name]);
+
   const toggleFavorite = () => {
     try {
       const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-
       if (isFavorite) {
         const updatedFavorites = favorites.filter(
           (fav: string) => fav !== weather.name
@@ -70,18 +80,8 @@ const CurrentWeather: React.FC = () => {
   };
 
   useEffect(() => {
-    try {
-      const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-      const isFav = favorites.some((fav: string) => fav === weather.name);
-      setIsFavorite(isFav);
-    } catch (error) {
-      toast.error("Failed to load favorite cities.");
-    }
-  }, [weather.name]);
-
-  useEffect(() => {
-    if (isError) {
-      toast.error("Cannot load weather for this place");
+    if (isError || navigator.onLine === false || isInitial) {
+      isError && toast.error("Cannot load weather for this place");
       const cachedWeatherData = getWeatherDataFromLocalStorage();
       if (cachedWeatherData) {
         dispatch(setWeatherData(cachedWeatherData));
@@ -89,7 +89,7 @@ const CurrentWeather: React.FC = () => {
         setHasWeatherData(false);
       }
     }
-  }, [isError, dispatch]);
+  }, [isError, dispatch, isInitial]);
 
   useEffect(() => {
     if (weather && weather.name) {
@@ -99,21 +99,8 @@ const CurrentWeather: React.FC = () => {
   }, [weather]);
 
   useEffect(() => {
-    if (navigator.onLine === false || isInitial) {
-      const cachedWeatherData = getWeatherDataFromLocalStorage();
-      if (cachedWeatherData) {
-        dispatch(setWeatherData(cachedWeatherData));
-      } else {
-        setHasWeatherData(false);
-      }
-    }
-  }, [isInitial, dispatch]);
-
-  useEffect(() => {
     const cachedWeatherData = getWeatherDataFromLocalStorage();
-    if (!cachedWeatherData) {
-      setHasWeatherData(false);
-    }
+    !cachedWeatherData && setHasWeatherData(false);
   }, []);
 
   if (!hasWeatherData) {

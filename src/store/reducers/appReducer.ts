@@ -1,12 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TempUnit } from "utils/general";
-
-export interface IAppState {
-  tempUnit: TempUnit;
-  isLoading: boolean;
-  isInitial: boolean;
-  darkMode: boolean;
-}
+import { IAppState, TempUnit } from "types";
 
 const initialState: IAppState = {
   tempUnit: TempUnit.CELCIUS,

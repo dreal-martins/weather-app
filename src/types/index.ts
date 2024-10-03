@@ -36,3 +36,24 @@ export type ExtendedForecastData = {
     main: string;
   };
 };
+
+export enum TempUnit {
+  CELCIUS,
+  FAHRENHEIT,
+}
+export interface IAppState {
+  tempUnit: TempUnit;
+  isLoading: boolean;
+  isInitial: boolean;
+  darkMode: boolean;
+}
+
+export type FavoriteCitiesState = {
+  favorites: string[];
+};
+
+export type WeatherState = {
+  weatherData: WeatherData;
+  extendedWeatherData: ExtendedForecastData[];
+  isError: boolean;
+};

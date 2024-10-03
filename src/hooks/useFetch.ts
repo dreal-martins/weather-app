@@ -1,6 +1,5 @@
 import { useState, useCallback } from "react";
 import axios, { AxiosError } from "axios";
-import dayjs from "dayjs";
 
 interface ApiResponse {
   type?: string;
@@ -50,14 +49,12 @@ const useFetch = <T>() => {
           if (axios.isAxiosError(err)) {
             const error = err as AxiosError<ApiResponse>;
             let errorMessage = "An error occurred";
-
             if (error.code === "ECONNABORTED") {
               errorMessage = "Request timed out";
             } else if (!error.response) {
               errorMessage = "Network error";
             } else {
               const responseData = error.response.data;
-
               if (responseData) {
                 if (responseData.error && responseData.error_description) {
                   errorMessage = responseData.error_description;
@@ -66,7 +63,6 @@ const useFetch = <T>() => {
                 }
               }
             }
-
             setFetchState({ data: null, error: errorMessage, loading: false });
           } else {
             setFetchState({

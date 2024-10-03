@@ -52,10 +52,8 @@ const Favorite: React.FC = () => {
   useEffect(() => {
     const fetchWeatherForCities = async () => {
       if (favorites.length === 0) return;
-
       setLoading(true);
       setError(null);
-
       try {
         const weatherResponses = await Promise.all(
           favorites.map((city) => fetchWeatherData(city))
@@ -69,7 +67,6 @@ const Favorite: React.FC = () => {
             newWeatherData[favorites[index]] = null;
           }
         });
-
         setWeatherData(newWeatherData);
         localStorage.setItem(
           "favouriteWeatherData",

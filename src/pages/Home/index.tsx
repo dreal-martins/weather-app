@@ -4,8 +4,8 @@ import { AppStore } from "store";
 import Search from "components/Search";
 import CurrentWeather from "components/CurrentWeather";
 import Forecast from "components/Forecast";
-import CityList from "components/CityList";
 import Favorite from "components/Favorites";
+import CityList from "components/CityList";
 
 const Home = () => {
   const isDarkMode = useSelector((state: AppStore) => state.app.darkMode);

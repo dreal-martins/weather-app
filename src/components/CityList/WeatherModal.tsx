@@ -22,7 +22,6 @@ const WeatherModal: React.FC<WeatherModalProps> = ({
   selectedCity,
   weatherData,
 }) => {
-  console.log(selectedCity);
   const [notes, setNotes] = useState<
     { id: number; text: string; isEditing: boolean }[]
   >([]);
@@ -74,7 +73,6 @@ const WeatherModal: React.FC<WeatherModalProps> = ({
   };
 
   const weatherInfo = weatherData[selectedCity];
-  console.log(weatherInfo);
   return (
     <Modal
       title={`Weather in ${selectedCity}`}
